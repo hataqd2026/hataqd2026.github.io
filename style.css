@@ -999,3 +999,56 @@ button {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+/* ===== 手机屏幕优化 ===== */
+@media screen and (max-width: 768px) {
+    /* 主要容器改为上下排列（可保留默认，但加强控制） */
+    .main-container {
+        flex-direction: column; /* 强制上下排列 */
+        padding: 10px;
+    }
+    
+    /* 左右区域都占满宽度 */
+    .left-panel, .right-panel {
+        width: 100% !important;
+        margin: 5px 0;
+        padding: 10px;
+    }
+    
+    /* 输入框占满宽度 */
+    input, select, .input-group {
+        width: 100% !important;
+        box-sizing: border-box;
+        font-size: 16px; /* 防止 iOS 自动放大 */
+        padding: 10px;
+        margin-bottom: 8px;
+    }
+    
+    /* 表格单元格改为块级显示，使每个字段单独一行 */
+    .item-row {
+        display: block;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+    }
+    .item-row input, .item-row select {
+        width: 100%;
+        margin: 4px 0;
+    }
+    
+    /* 按钮更大，方便点击 */
+    .btn, button {
+        width: 100%;
+        padding: 14px;
+        font-size: 18px;
+    }
+    
+    /* 减小标题字体 */
+    h1, h2 {
+        font-size: 1.4rem;
+    }
+    
+    /* 调整卡片内边距 */
+    .card {
+        padding: 12px;
+    }
+}

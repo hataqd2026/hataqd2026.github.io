@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haitao & Go Back - 欧洲华人双向转运与清关比价智能工具</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-decor blur-circle-1"></div>
+    <div class="background-decor blur-circle-2"></div>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo-area">
+                <div class="logo-icon"><i class="fa-solid fa-plane-arrival"></i></div>
+                <div class="logo-text">
+                    <h1>Haitao & Go Back</h1>
+                    <p>欧洲华人双向智能物流与清关助手</p>
+                </div>
+            </div>
+            <div class="header-badge">
+                <span class="pulse-indicator"></span>
+                <span>欧洲站专线已连接</span>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <div class="mode-tabs">
+            <button class="tab-btn active" id="tab-c2e" onclick="switchMode('c2e')">
+                <span class="flag-icon">🇨🇳 ➔ 🇪🇺</span>
+                <span class="tab-title">中国寄欧洲 (反向海淘)</span>
+            </button>
+            <button class="tab-btn" id="tab-e2c" onclick="switchMode('e2c')">
+                <span class="flag-icon">🇪🇺 ➔ 🇨🇳</span>
+                <span class="tab-title">欧洲寄回国 (宝贝送给家人)</span>
+            </button>
+        </div>
+
+        <main class="main-content">
+            <!-- LEFT PANEL: Inputs (Changes Dynamically) -->
+            <section class="panel input-panel">
+                <!-- Mode 1: China to Europe Form -->
+                <div id="form-c2e" class="mode-form active">
+                    <div class="panel-header">
+                        <h2><i class="fa-solid fa-box-open"></i> 包裹参数估算</h2>
+                        <p>请准确输入包裹尺寸，以避免体积重账单超标</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="c2e-country">目的地国家 (欧洲)</label>
+                        <div class="select-wrapper">
+                            <select id="c2e-country">
+                                <optgroup label="西欧 / 中欧 (Central & Western Europe)">
+                                    <option value="DE">德国 (Germany)</option>
+                                    <option value="FR">法国 (France)</option>
+                                    <option value="GB">英国 (United Kingdom)</option>
+                                    <option value="NL">荷兰 (Netherlands)</option>
+                                    <option value="BE">比利时 (Belgium)</option>
+                                    <option value="CH">瑞士 (Switzerland)</option>
+                                    <option value="AT">奥地利 (Austria)</option>
+                                    <option value="IE">爱尔兰 (Ireland)</option>
+                                </optgroup>
+                                <optgroup label="北欧 (Northern Europe)">
+                                    <option value="DK">丹麦 (Denmark)</option>
+                                    <option value="SE">瑞典 (Sweden)</option>
+                                    <option value="NO">挪威 (Norway)</option>
+                                    <option value="FI">芬兰 (Finland)</option>
+                                    <option value="IS">冰岛 (Iceland)</option>
+                                </optgroup>
+                                <optgroup label="南欧 (Southern Europe)">
+                                    <option value="IT">意大利 (Italy)</option>
+                                    <option value="ES">西班牙 (Spain)</option>
+                                    <option value="PT">葡萄牙 (Portugal)</option>
+                                    <option value="GR">希腊 (Greece)</option>
+                                </optgroup>
+                                <optgroup label="东欧 (Eastern Europe)">
+                                    <option value="PL">波兰 (Poland)</option>
+                                    <option value="CZ">捷克 (Czech Republic)</option>
+                                    <option value="HU">匈牙利 (Hungary)</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            <label for="c2e-weight">实际重量 (kg)</label>
+                            <input type="number" id="c2e-weight" placeholder="如: 2.5" step="0.1" min="0.1" value="2.0">
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="c2e-cargo-type">物品属性</label>
+                            <div class="select-wrapper">
+                                <select id="c2e-cargo-type">
+                                    <option value="normal">普通物品 (衣服/杂货)</option>
+                                    <option value="food">食品/非处方药 (特货专线)</option>
+                                    <option value="battery">带电数码/电池 (磁检线)</option>
+                                    <option value="luxury">轻奢品/大牌 (税金保障线)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>外箱包装尺寸 (cm)</label>
+                        <div class="dim-inputs">
+                            <div class="dim-field">
+                                <input type="number" id="c2e-length" placeholder="长" value="30">
+                                <span>长</span>
+                            </div>
+                            <span class="multiply-sign">×</span>
+                            <div class="dim-field">
+                                <input type="number" id="c2e-width" placeholder="宽" value="25">
+                                <span>宽</span>
+                            </div>
+                            <span class="multiply-sign">×</span>
+                            <div class="dim-field">
+                                <input type="number" id="c2e-height" placeholder="高" value="20">
+                                <span>高</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="helper-box">
+                        <div class="helper-icon"><i class="fa-solid fa-circle-info"></i></div>
+                        <div class="helper-text">
+                            <p><strong>体积重说明：</strong>大部分中欧空运集运商的体积重计费公式为：<code>(长×宽×高) / 5000</code>。若体积重大于实重，将按体积重收费。</p>
+                        </div>
+                    </div>
+
+                    <button class="btn-primary" onclick="calculateChinaToEurope()">
+                        <i class="fa-solid fa-magnifying-glass"></i> 一键双向比价与通道匹配
+                    </button>
+                </div>
+
+                <!-- Mode 2: Europe to China Form -->
+                <div id="form-e2c" class="mode-form">
+                    <div class="panel-header">
+                        <h2><i class="fa-solid fa-gift"></i> 寄送物品列表</h2>
+                        <p>请录入寄回国内的物品，系统将自动进行分箱与税率评估</p>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            <label for="e2c-origin">始发国家 (欧洲)</label>
+                            <div class="select-wrapper">
+                                <select id="e2c-origin">
+                                    <optgroup label="西欧 / 中欧 (Central & Western Europe)">
+                                        <option value="DE">德国 (Germany)</option>
+                                        <option value="FR">法国 (France)</option>
+                                        <option value="GB">英国 (United Kingdom)</option>
+                                        <option value="NL">荷兰 (Netherlands)</option>
+                                        <option value="BE">比利时 (Belgium)</option>
+                                        <option value="CH">瑞士 (Switzerland)</option>
+                                        <option value="AT">奥地利 (Austria)</option>
+                                        <option value="IE">爱尔兰 (Ireland)</option>
+                                    </optgroup>
+                                    <optgroup label="北欧 (Northern Europe)">
+                                        <option value="DK">丹麦 (Denmark)</option>
+                                        <option value="SE">瑞典 (Sweden)</option>
+                                        <option value="NO">挪威 (Norway)</option>
+                                        <option value="FI">芬兰 (Finland)</option>
+                                        <option value="IS">冰岛 (Iceland)</option>
+                                    </optgroup>
+                                    <optgroup label="南欧 (Southern Europe)">
+                                        <option value="IT">意大利 (Italy)</option>
+                                        <option value="ES">西班牙 (Spain)</option>
+                                        <option value="PT">葡萄牙 (Portugal)</option>
+                                        <option value="GR">希腊 (Greece)</option>
+                                    </optgroup>
+                                    <optgroup label="东欧 (Eastern Europe)">
+                                        <option value="PL">波兰 (Poland)</option>
+                                        <option value="CZ">捷克 (Czech Republic)</option>
+                                        <option value="HU">匈牙利 (Hungary)</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="e2c-dest">目的地</label>
+                            <input type="text" id="e2c-dest" value="中国大陆 (China Mainland)" readonly class="readonly-input">
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Item Table -->
+                    <div class="item-list-container">
+                        <label>申报物品清单</label>
+                        <div class="item-header-row">
+                            <span>物品名</span>
+                            <span>类别</span>
+                            <span>数量</span>
+                            <span>单价(€)</span>
+                            <span>操作</span>
+                        </div>
+                        <div id="items-container">
+                            <!-- Items inserted dynamically by JavaScript -->
+                        </div>
+                        <button class="btn-secondary btn-sm" onclick="addItemRow()">
+                            <i class="fa-solid fa-plus"></i> 添加物品
+                        </button>
+                    </div>
+
+                    <!-- Live Summary Stat Box -->
+                    <div class="summary-stats-box">
+                        <div class="stat-item">
+                            <span class="stat-label">总计价值：</span>
+                            <span class="stat-val" id="total-val-display">0.00 EUR</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">约合人民币：</span>
+                            <span class="stat-val Highlight" id="total-cny-display">0.00 RMB</span>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons-group">
+                        <button class="btn-success" onclick="optimizeSplitBox()">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> 一键双向比价与智能分箱避税
+                        </button>
+                    </div>
+
+                    <!-- Split Box Recommendation Display -->
+                    <div id="split-box-result-wrapper" class="split-box-wrapper hide">
+                        <div class="split-header">
+                            <h3><i class="fa-solid fa-box-open"></i> 智能分箱建议 (Split-Box Optimization)</h3>
+                            <span class="badge badge-success">避税优化完成</span>
+                        </div>
+                        <div id="split-packages-container">
+                            <!-- Packages list populated dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- ID Card Watermark Panel -->
+                    <div class="id-uploader-section">
+                        <div class="section-title">
+                            <h3><i class="fa-solid fa-id-card"></i> 身份证加密防伪水印 (清关专用)</h3>
+                            <p>海关申报需要身份证。在本地给照片打水印，保障个人隐私安全，数据加密防窃取。</p>
+                        </div>
+                        
+                        <div class="upload-dropzone" onclick="document.getElementById('id-file-input').click()">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            <p>点击选择或拖拽身份证照片至此</p>
+                            <span class="file-info" id="file-info-text">未选择文件</span>
+                            <input type="file" id="id-file-input" accept="image/*" style="display: none;" onchange="handleIDUpload(event)">
+                        </div>
+
+                        <div class="watermark-controls hide" id="watermark-controls">
+                            <div class="form-group">
+                                <label for="watermark-text">自定义水印文字</label>
+                                <input type="text" id="watermark-text" value="仅限中国海关个人进境申报使用，他用无效" oninput="drawWatermark()">
+                            </div>
+                            <div class="canvas-preview-container">
+                                <canvas id="watermark-canvas"></canvas>
+                            </div>
+                            <button class="btn-primary btn-sm" onclick="downloadWatermarkedImage()">
+                                <i class="fa-solid fa-download"></i> 下载带防伪水印照片
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RIGHT PANEL: Results -->
+            <section class="panel results-panel">
+                <div class="panel-header">
+                    <h2><i class="fa-solid fa-route"></i> 渠道比价与时效分析</h2>
+                    <p id="results-subtitle">请点击左侧比价按钮生成路线数据</p>
+                </div>
+
+                <!-- Volumetric Weight Alert Box (For Mode 1) -->
+                <div id="vol-weight-alert" class="alert-banner hide">
+                    <span class="alert-icon"><i class="fa-solid fa-triangle-exclamation"></i></span>
+                    <span class="alert-text" id="vol-weight-alert-text">体积重大于实重，将按体积重进行计费。</span>
+                </div>
+
+                <!-- Sort & Filter Controls -->
+                <div class="sort-controls hide" id="sort-controls-bar">
+                    <span>排序方式:</span>
+                    <button class="sort-btn active" id="sort-price" onclick="sortRoutes('price')">运费最低</button>
+                    <button class="sort-btn" id="sort-time" onclick="sortRoutes('time')">时效最快</button>
+                    <button class="sort-btn" id="sort-safety" onclick="sortRoutes('safety')">清关率最高</button>
+                </div>
+
+                <div class="routes-container" id="routes-list">
+                    <!-- Placeholder visual for initial load -->
+                    <div class="empty-state">
+                        <div class="empty-icon"><i class="fa-solid fa-calculator"></i></div>
+                        <h3>输入参数，开启智能比价</h3>
+                        <p>我们将比对欧洲邮政、民营快递、华人代理及敏感特货专线，为您匹配最划算、通关率最高的邮寄组合方案。</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <p>&copy; 2026 Haitao & Go Back - 助海外华人安心海淘与给国内家人寄礼品</p>
+            <div class="footer-links">
+                <a href="#privacy"><i class="fa-solid fa-shield-halved"></i> 隐私保护说明</a>
+                <a href="#guide"><i class="fa-solid fa-book-open"></i> 海关政策指引</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+# hataqd2026.github.io

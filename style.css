@@ -493,23 +493,40 @@ button {
     color: var(--text-muted);
 }
 
-.item-header-row {
-    display: grid;
-    grid-template-columns: 2fr 1.5fr 1fr 1fr 40px;
-    gap: 10px;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    padding-bottom: 6px;
-    border-bottom: 1px solid var(--border-color);
-}
-
+.item-header-row,
 .item-row {
     display: grid;
-    grid-template-columns: 2fr 1.5fr 1fr 1fr 40px;
-    gap: 10px;
+    grid-template-columns: 2fr 2fr 1fr 1fr 1fr 0.6fr;
+    gap: 6px;
     align-items: center;
+    padding: 6px 4px;
+}
+
+.item-header-row {
+    font-weight: bold;
+    color: #94a3b8;
+    font-size: 13px;
+    border-bottom: 1px solid #1e293b;
+}
+
+.item-row input,
+.item-row select {
+    width: 100%;
+    padding: 6px 8px;
+    border-radius: 4px;
+    border: 1px solid #334155;
+    background: #0f172a;
+    color: #e2e8f0;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.item-row .btn-delete-row {
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-size: 16px;
 }
 
 .btn-delete-row {

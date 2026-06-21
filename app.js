@@ -339,10 +339,9 @@ function removeItemRow(id) {
     const row = document.getElementById(id);
     if (row) {
         row.remove();
-    }
     recalculateSummaryStats();
+   }
 }
-
 function recalculateSummaryStats() {
     let totalEUR = 0;
     const rows = document.querySelectorAll('.item-row');

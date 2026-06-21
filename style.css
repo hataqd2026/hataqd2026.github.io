@@ -1138,3 +1138,85 @@ button {
         padding: 4px 6px;
     }
 }
+/* ===== 卡片式物品列表 ===== */
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 12px 0;
+}
+
+.item-card {
+    background: #1e293b;
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid #334155;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.card-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.card-row label {
+    width: 70px;
+    font-weight: 600;
+    color: #94a3b8;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.card-row input,
+.card-row select {
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #334155;
+    background: #0f172a;
+    color: #e2e8f0;
+    font-size: 14px;
+    min-width: 0;
+    width: 100%;
+}
+
+.card-row input:focus,
+.card-row select:focus {
+    outline: 2px solid #3b82f6;
+    border-color: transparent;
+}
+
+.item-card .btn-delete-row {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: 0.2s;
+}
+
+.item-card .btn-delete-row:hover {
+    background: #2d1a1a;
+}
+
+/* 手机优化 */
+@media screen and (max-width: 768px) {
+    .card-row {
+        flex-wrap: wrap;
+    }
+    .card-row label {
+        width: 100%;
+        font-size: 13px;
+    }
+    .card-row input,
+    .card-row select {
+        font-size: 16px; /* 防止 iOS 自动缩放 */
+        padding: 10px 12px;
+    }
+}

@@ -303,7 +303,7 @@ function calculateChinaToEurope() {
 // ==========================================================================
 // FORM 2: EUROPE TO CHINA (SPLIT BOX & TAX OPTIMIZATION)
 // ==========================================================================
-function addItemRow(name = "", category = "supplements", qty = 1, price = 10.00) {
+function addItemRow(name = "", category = "cosmetics", qty = 1, price = 0, weight = ) {
     const container = document.getElementById('items-container');
     const id = 'item-' + Date.now() + Math.random().toString(36).substr(2, 5);
     
@@ -325,6 +325,7 @@ function addItemRow(name = "", category = "supplements", qty = 1, price = 10.00)
         </div>
         <input type="number" class="item-qty" value="${qty}" min="1" oninput="recalculateSummaryStats()">
         <input type="number" class="item-price" value="${price.toFixed(2)}" min="0" step="0.01" oninput="recalculateSummaryStats()">
+        <input type="number" class="item-weight" value="${weight}" min="0" step="0.1" placeholder="kg" oninput="recalculateSummaryStats()">
         <button class="btn-delete-row" onclick="removeItemRow('${id}')">
             <i class="fa-solid fa-trash-can"></i>
         </button>

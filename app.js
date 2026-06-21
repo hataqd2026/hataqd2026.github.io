@@ -135,9 +135,6 @@ let generatedRoutes = []; // Temporarily stores routes for sorting
 let uploadIDImg = null;  // Stores uploaded ID Image object
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Add 2 initial item rows for Europe ➔ China mode
-    addItemRow("雅诗兰黛眼霜", "cosmetics", 1, 45.00);
-    addItemRow("双心大蒜素", "supplements", 3, 12.50);
 });
 
 // ==========================================================================

@@ -1069,3 +1069,72 @@ button {
         padding: 12px;
     }
 }
+/* ===== 物品列表横向排列 ===== */
+.item-header-row,
+.item-row {
+    display: grid;
+    grid-template-columns: 2fr 1.8fr 0.8fr 0.8fr 0.8fr 0.5fr;
+    gap: 6px;
+    align-items: center;
+    padding: 6px 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.item-header-row {
+    font-weight: bold;
+    color: #94a3b8;
+    font-size: 13px;
+    border-bottom: 2px solid #1e293b;
+    padding-bottom: 8px;
+    margin-bottom: 4px;
+}
+
+.item-row {
+    border-bottom: 1px solid #1e293b;
+    padding: 6px 4px;
+}
+
+/* 让输入框占满网格单元格 */
+.item-row input,
+.item-row select {
+    width: 100%;
+    padding: 6px 8px;
+    border-radius: 4px;
+    border: 1px solid #334155;
+    background: #0f172a;
+    color: #e2e8f0;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* 删除按钮样式 */
+.item-row .btn-delete-row {
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 4px 8px;
+    text-align: center;
+}
+
+/* 让 select 和其他输入框对齐 */
+.item-row .select-wrapper {
+    width: 100%;
+}
+
+/* ===== 手机屏幕适配 ===== */
+@media screen and (max-width: 768px) {
+    .item-header-row,
+    .item-row {
+        grid-template-columns: 1.5fr 1.5fr 0.8fr 0.8fr 0.8fr 0.5fr;
+        gap: 4px;
+        font-size: 12px;
+    }
+    .item-row input,
+    .item-row select {
+        font-size: 12px;
+        padding: 4px 6px;
+    }
+}

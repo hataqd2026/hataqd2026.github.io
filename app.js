@@ -343,19 +343,23 @@ function removeItemRow(id) {
    }
 }
 function recalculateSummaryStats() {
-    let totalEUR = 0;
+    let totalValue = 0;
+    let totalWeight = 0;
     const rows = document.querySelectorAll('.item-row');
-    
     rows.forEach(row => {
-        const qty = parseInt(row.querySelector('.item-qty').value) || 0;
+        const qty = parseFloat(row.querySelector('.item-qty').value) || 0;
         const price = parseFloat(row.querySelector('.item-price').value) || 0;
-        totalEUR += qty * price;
+        const weight = parseFloat(row.querySelector('.item-weight').value) || 0;   // 读取重量
+        totalValue += qty * price;
+        totalWeight += qty * weight;
     });
-    
-    const totalCNY = totalEUR * EUR_TO_CNY;
-    
-    document.getElementById('total-val-display').textContent = `${totalEUR.toFixed(2)} EUR`;
-    document.getElementById('total-cny-display').textContent = `${totalCNY.toFixed(2)} RMB`;
+    // 更新显示
+    document.getElementById('total-value').textContent = totalValue.toFixed(2);
+    // 如果有显示总重量的元素
+    const weightDisplay = document.getElementById('total-weight');
+    if (weightDisplay) {
+        weightDisplay.textContent = totalWeight.toFixed(2);
+    }
 }
 
 // Split-Box Optimization Algorithm (智能分箱算法)

@@ -304,36 +304,50 @@ function calculateChinaToEurope() {
 // ==========================================================================
 
 // ✅ 修改后的 addItemRow：增加 weight 参数和重量输入框
-function addItemRow(name = "", category = "supplements", qty = 1, price = 10.00, weight = '') {
+function addItemRow(name = "", category = "supplements", qty = 1, price = "", weight = "") {
     const container = document.getElementById('items-container');
     const id = 'item-' + Date.now() + Math.random().toString(36).substr(2, 5);
-   
-    const row = document.createElement('div');
-    row.className = 'item-row';
-    row.id = id;
-   
+
+    const card = document.createElement('div');
+    card.className = 'item-card';
+    card.id = id;
+
     let optionsHtml = '';
     for (const [key, label] of Object.entries(CHINA_TAX_LABELS)) {
         optionsHtml += `<option value="${key}" ${key === category ? 'selected' : ''}>${label}</option>`;
     }
-   
-    row.innerHTML = `
-        <input type="text" class="item-name" placeholder="如: 保健品" value="${name}">
-        <select class="item-category" onchange="recalculateSummaryStats()">
-           ${optionsHtml}
-        </select>
-        <input type="number" class="item-qty" value="${qty}" min="1" oninput="recalculateSummaryStats()">
-        <input type="number" class="item-price" value="${price.toFixed(2)}" min="0" step="0.01" oninput="recalculateSummaryStats()">
-        <input type="number" class="item-weight" value="${weight}" min="0" step="0.1" placeholder="kg" oninput="recalculateSummaryStats()">
+
+    card.innerHTML = `
+        <div class="card-row">
+            <label>物品名</label>
+            <input type="text" class="item-name" placeholder="如：保健品" value="${name}">
+        </div>
+        <div class="card-row">
+            <label>类别</label>
+            <select class="item-category" onchange="recalculateSummaryStats()">
+                ${optionsHtml}
+            </select>
+        </div>
+        <div class="card-row">
+            <label>数量</label>
+            <input type="number" class="item-qty" value="${qty}" min="1" oninput="recalculateSummaryStats()">
+        </div>
+        <div class="card-row">
+            <label>单价(€)</label>
+            <input type="number" class="item-price" value="${price}" min="0" step="0.01" placeholder="0.00" oninput="recalculateSummaryStats()">
+        </div>
+        <div class="card-row">
+            <label>重量(kg)</label>
+            <input type="number" class="item-weight" value="${weight}" min="0" step="0.1" placeholder="0.0" oninput="recalculateSummaryStats()">
+        </div>
         <button class="btn-delete-row" onclick="removeItemRow('${id}')">
-            <i class="fa-solid fa-trash-can"></i>
+            <i class="fa-solid fa-trash-can"></i> 删除
         </button>
     `;
-   
-    container.appendChild(row);
+
+    container.appendChild(card);
     recalculateSummaryStats();
 }
-
 // ✅ 修复 removeItemRow：删除后重新计算
 function removeItemRow(id) {
     const row = document.getElementById(id);

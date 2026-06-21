@@ -319,11 +319,9 @@ function addItemRow(name = "", category = "supplements", qty = 1, price = 10.00,
    
     row.innerHTML = `
         <input type="text" class="item-name" placeholder="如: 保健品" value="${name}">
-        <div class="select-wrapper">
-            <select class="item-category" onchange="recalculateSummaryStats()">
-                ${optionsHtml}
-            </select>
-        </div>
+        <select class="item-category" onchange="recalculateSummaryStats()">
+           ${optionsHtml}
+        </select>
         <input type="number" class="item-qty" value="${qty}" min="1" oninput="recalculateSummaryStats()">
         <input type="number" class="item-price" value="${price.toFixed(2)}" min="0" step="0.01" oninput="recalculateSummaryStats()">
         <input type="number" class="item-weight" value="${weight}" min="0" step="0.1" placeholder="kg" oninput="recalculateSummaryStats()">

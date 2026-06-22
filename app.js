@@ -361,7 +361,7 @@ function removeItemRow(id) {
 function recalculateSummaryStats() {
     let totalEUR = 0;
     let totalWeight = 0;
-    const rows = document.querySelectorAll('.item-row');
+    const rows = document.querySelectorAll('.item-card');
    
     rows.forEach(row => {
         const qty = parseInt(row.querySelector('.item-qty').value) || 0;
@@ -386,7 +386,7 @@ function recalculateSummaryStats() {
 // Split-Box Optimization Algorithm (智能分箱算法) - ✅ 使用用户输入的重量
 function optimizeSplitBox() {
     // Read all items from dynamic rows
-    const rows = document.querySelectorAll('.item-row');
+    const rows = document.querySelectorAll('.item-card');
     const items = [];
    
     rows.forEach(row => {

@@ -269,7 +269,6 @@ body {
    FORMS & INPUTS
    ========================================== */
 .mode-form {
-    display: none;
 }
 
 .mode-form.active {
@@ -755,7 +754,6 @@ button {
 }
 
 .alert-banner.hide {
-    display: none;
 }
 
 .alert-icon {
@@ -1003,7 +1001,6 @@ button {
 
 /* Helper Utilities */
 .hide {
-    display: none !important;
 }
 
 /* Animation utilities */
